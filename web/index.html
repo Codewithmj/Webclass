@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cats Facts</title>
+    <script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <style type="text/css">
+    body{margin: 0;} 
+    .wallpaper {
+        width: 100%;
+        height: 200px;
+        background: #fc5e37;
+        margin-bottom: 20px;
+    }
+    .title{
+        color: #f5f5f5;
+        font-size: 50px;
+        text-align: center;
+        font-weight: bolder;
+        line-height: 200px;
+    }
+    button{
+        margin-top: 20px;
+        background: blueviolet;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 20px;
+        border: 0;
+        cursor: pointer;
+    }
+    #results{
+        width: 400px;
+        border: 1px solid black;
+        margin: auto;
+        margin-top: 30px;
+        padding: 20px;
+    }
+    
+    </style>
+
+
+<div class="wallpaper">
+    <div class="title"> ANIMAL FACT GENERATOR LTD</div>
+</div>
+
+<center><select id="animal">
+    <option value="cat">Cat</option>
+    <option value="horse">Horse</option>
+    <option value="peacock">Peacock</option>
+</select>
+</center>
+<center><button id='btn' onclick="changeBtn('Loading')">Generate</button></center>
+
+<div id="results">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium sed provident corrupti quaerat blanditiis quis sit fugiat optio nemo exercitationem? Voluptates, velit deserunt maxime iusto molestias rem eaque. Reprehenderit, non!</div>
+
+
+
+
+   <script type ="text/javascript">
+    var btn = document.getElementById("btn");
+    var results = document.getElementById("results");
+
+    function changeBtn(e){
+        document.getElementById("results").style.color = "red";
+        document.getElementById("results").innerHTML = e;
+
+
+    var animal = document.getElementById("animal").value;
+  
+
+        // var url_string = "https://cat-fact.herokuapp.com/facts/random?amount=1&animal_type1";
+        // url_string = url_string + animal;
+        // console.log(url_string);
+    //$.get("https://cat-fact.herokuapp.com/", "PARAMETERS", "RESPONSE FUNCTION")
+    $.get("https://cat-fact.herokuapp.com/facts/random", {amount :1, animal_type:animal}, 
+        function(res){
+          var res_text= res.text;
+            results.innerHTML = res_text;
+            results.style.color = "black";
+
+    });
+    }
+</script> 
+</body>
+</html>
